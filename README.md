@@ -33,20 +33,21 @@ A **modern, responsive, and role-based Library Management System** built using t
 
 ---
 
-## 🗄️ Database Setup
+## 🛠️ Necessary Tools required (Pre-requistes):
 
-1. Make sure **Microsoft SQL Server** is installed.
-2. Open SQL Server Management Studio (SSMS).
-3. Run the SQL file `LMS.sql` to create the required database and tables.
-4. Update the connection string in `web.config` to match your local SQL Server instance.
+1. Visual Studio 2022
+2. SQL Server Management Studio
 
 ---
 
 ## 💡 How to Run the Project
 
 1. Clone this repository:
-   ```bash
-   https://github.com/AbdMuh/Library-Hub-2.0.git
+```
+git clone https://github.com/AbdMuh/Library-Hub-2.0
+```
+2. Run the LMS.sql on SQL Server Management Studio (SSMS) to create required database and tables
+3. Update the connection string in web.config file to match your local SQL Server instance.
 
 ---
 
