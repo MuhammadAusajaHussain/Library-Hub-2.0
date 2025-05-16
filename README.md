@@ -1,4 +1,4 @@
-# 📚 Library Management System (LMS)
+# 📚 Library Hub 2.0
 
 A **modern, responsive, and role-based Library Management System** built using the **ASP.NET MVC** framework with a clean UI powered by **Tailwind CSS**. This system simplifies and digitizes core library operations like book borrowing, user registration, profile management, and administrative controls.
 
