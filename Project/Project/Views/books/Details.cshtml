@@ -1,0 +1,73 @@
+﻿@model Project.Models.book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div class="max-w-4xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-6 py-8 rounded-xl shadow-lg">
+    <!-- Back to List Link -->
+    <div class="mb-6">
+        <a href="@Url.Action("Index")"
+           class="bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-2 px-4 rounded shadow transition duration-200">
+            ← Back to List
+        </a>
+    </div>
+
+    <h2 class="text-3xl font-bold mb-6 text-center">Book Details</h2>
+
+    <div class="space-y-4">
+        <!-- Title -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Title:</span>
+            <span>@Html.DisplayFor(model => model.title)</span>
+        </div>
+
+        <!-- Total Copies -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Total Copies:</span>
+            <span>@Html.DisplayFor(model => model.totalCopies)</span>
+        </div>
+
+        <!-- Borrowed Copies -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Borrowed Copies:</span>
+            <span>@Html.DisplayFor(model => model.borrowedCopies)</span>
+        </div>
+
+        <!-- Available Copies -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Available Copies:</span>
+            <span>@Html.DisplayFor(model => model.avlCopies)</span>
+        </div>
+
+        <!-- Publication Year -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Publication Year:</span>
+            <span>@Html.DisplayFor(model => model.publication_year)</span>
+        </div>
+
+        <!-- Author -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Author:</span>
+            <span>@Html.DisplayFor(model => model.author.name)</span>
+        </div>
+
+        <!-- Genre -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Genre:</span>
+            <span>@Html.DisplayFor(model => model.genre.genre_description)</span>
+        </div>
+
+        <!-- Publisher -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Publisher:</span>
+            <span>@Html.DisplayFor(model => model.publisher.name)</span>
+        </div>
+    </div>
+
+    <div class="mt-6 flex justify-center gap-6">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ISBN }, new { @class = "bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-3 px-4 rounded shadow transition duration-200" })
+    </div>
+</div>

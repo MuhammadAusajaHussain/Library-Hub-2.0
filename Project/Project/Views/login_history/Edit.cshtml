@@ -1,0 +1,84 @@
+﻿@model Project.Models.login_history
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="max-w-4xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-6 py-8 rounded-xl shadow-lg">
+    <div class="mb-6">
+        <a href="@Url.Action("Index")"
+           class="bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-2 px-4 rounded shadow transition duration-200">
+            ← Back to List
+        </a>
+    </div>
+
+    <h2 class="text-3xl font-bold mb-6 text-center">Edit Login History</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-red-400 mb-4" })
+        @Html.HiddenFor(model => model.login_id)
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- User -->
+            <div>
+                @Html.LabelFor(model => model.user_id, "User", htmlAttributes: new { @class = "text-lg font-medium" })
+                @Html.DropDownList("user_id", null, htmlAttributes: new
+                {
+                    @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600"
+                })
+                @Html.ValidationMessageFor(model => model.user_id, "", new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+
+            <!-- Login Time -->
+            <div>
+                @Html.LabelFor(model => model.login_time, "Login Time", htmlAttributes: new { @class = "text-lg font-medium" })
+                @Html.EditorFor(model => model.login_time, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600"
+                    }
+                })
+                @Html.ValidationMessageFor(model => model.login_time, "", new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+
+            <!-- Logout Time -->
+            <div>
+                @Html.LabelFor(model => model.logout_time, "Logout Time", htmlAttributes: new { @class = "text-lg font-medium" })
+                @Html.EditorFor(model => model.logout_time, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600"
+                    }
+                })
+                @Html.ValidationMessageFor(model => model.logout_time, "", new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+
+            <!-- IP Address -->
+            <div>
+                @Html.LabelFor(model => model.ip_address, "IP Address", htmlAttributes: new { @class = "text-lg font-medium" })
+                @Html.EditorFor(model => model.ip_address, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600"
+                    }
+                })
+                @Html.ValidationMessageFor(model => model.ip_address, "", new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <input type="submit" value="Save" class="w-full py-3 text-lg font-semibold rounded bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 transition duration-200" />
+        </div>
+    }
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

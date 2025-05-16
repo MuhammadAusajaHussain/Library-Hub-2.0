@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Global Font and Text Color -->
+    <style>
+        body, button, input, a, h2, p, label, div {
+            font-family: 'Poppins', sans-serif;
+            color: #e5e7eb; /* Tailwind's gray-200 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-800 to-gray-900 min-h-screen">
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <!-- Side Content: 30% on medium+ screens -->
+        <div class="hidden md:flex md:w-2/6 bg-gray-900 p-8 flex-col justify-center rounded-r-lg overflow-auto max-h-screen">
+            <div class="text-4xl md:text-4xl lg:text-6xl font-bold break-words tracking-wider leading-tight md:leading-snug mb-24">
+                LIBRARY HUB 2.0
+            </div>
+
+            <p class="text-base md:text-xl lg:text-xl leading-relaxed tracking-widest font-semibold">
+                Access a wide range of courses, track your progress, and achieve your learning goals.
+                Join our community of learners and take the next step in your education journey.
+            </p>
+        </div>
+
+        <!-- Login Form Container: 70% on medium+ screens -->
+        <div class="rounded-tl-xl rounded-bl-xl bg-gray-200 w-full md:w-4/6 flex items-center justify-center p-4 min-h-screen">
+            <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg flex flex-col items-center text-gray-800">
+                <h2 class="text-3xl font-bold  text-gray-800 text-center mb-6">Login</h2>
+
+                @using (Html.BeginForm())
+                {
+                    <div class="space-y-6 flex flex-col items-center w-full">
+                        <div class="flex flex-col w-full">
+                            @Html.Label("email", "Email", new { @class = "block text-sm font-medium mb-2 text-gray-800" })
+                            @Html.TextBox("email", null, new
+                            {
+                                @class = "p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 text-gray-800 focus:text-gray-800 focus:ring-gray-800 w-full",
+                                placeholder = "Enter your email"
+                            })
+                        </div>
+
+                        <div class="flex flex-col w-full">
+                            @Html.Label("password", "Password", new { @class = "block text-sm font-medium mb-2  text-gray-800" })
+                            @Html.Password("password", null, new
+                            {
+                                @class = "p-2 border border-gray-300 rounded-md focus:outline-none text-gray-800 focus:text-gray-800 focus:ring-2 focus:ring-gray-800 w-full",
+                                placeholder = "Enter your password"
+                            })
+                        </div>
+
+                        <div class="w-full">
+                            <input type="submit" value="Login"
+                                   class="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md transition duration-200" />
+                        </div>
+                    </div>
+                }
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="mt-4 text-center text-sm text-red-600 font-medium">
+                        @ViewBag.Error
+                    </div>
+                }
+
+                <div class="mt-6 text-center text-sm text-gray-600">
+                    <p class=" text-gray-800">
+                        Don't have an account?
+                        <a href="@Url.Action("Register", "Login")" class="text-gray-800 hover:underline font-bold">Sign up here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

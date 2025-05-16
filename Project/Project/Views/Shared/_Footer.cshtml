@@ -1,0 +1,37 @@
+﻿@* Views/Shared/_Footer.cshtml *@
+<footer class="ml-4 mr-4 bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 mt-8 py-8 rounded-2xl mb-3">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- About Section -->
+        <div>
+            <h3 class="text-xl font-bold mb-2" style="font-family: 'Poppins', sans-serif;">Library Hub</h3>
+            <p class="text-gray-400" style="font-family: 'Poppins', sans-serif;">
+                Your one-stop solution for browsing, borrowing, and managing books efficiently. Built with simplicity and performance in mind.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h4 class="text-lg font-semibold mb-2" style="font-family: 'Poppins', sans-serif;">Quick Links</h4>
+            <ul class="space-y-2">
+                <li><a href="@Url.Action("Index", "Home")" class="hover:text-blue-400 transition" style="font-family: 'Poppins', sans-serif;">Home</a></li>
+                <li><a href="@Url.Action("Index", "Books")" class="hover:text-blue-400 transition" style="font-family: 'Poppins', sans-serif;">Browse Books</a></li>
+                <li><a href="@Url.Action("Contact", "Home")" class="hover:text-blue-400 transition" style="font-family: 'Poppins', sans-serif;">Contact Us</a></li>
+                <li><a href="@Url.Action("About", "Home")" class="hover:text-blue-400 transition" style="font-family: 'Poppins', sans-serif;">About</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Media Links -->
+        <div>
+            <h4 class="text-lg font-semibold mb-2" style="font-family: 'Poppins', sans-serif;">Follow Us</h4>
+            <ul class="space-y-2">
+                <li><a href="https://linkedin.com/company/libraryhub" target="_blank" class="hover:text-blue-400 transition" style="font-family: 'Poppins', sans-serif;">LinkedIn</a></li>
+                <li><a href="https://facebook.com/libraryhub" target="_blank" class="hover:text-blue-400 transition" style="font-family: 'Poppins', sans-serif;">Facebook</a></li>
+                <li><a href="https://instagram.com/libraryhub" target="_blank" class="hover:text-blue-400 transition" style="font-family: 'Poppins', sans-serif;">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-2 pt-6 text-center text-sm text-gray-500" style="font-family: 'Poppins', sans-serif;">
+        &copy; @DateTime.Now.Year Library Hub. All rights reserved.
+    </div>
+</footer>

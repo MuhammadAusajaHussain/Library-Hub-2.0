@@ -1,0 +1,77 @@
+﻿@{
+    var role = Session["Role"]?.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar</title>
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom style to apply Poppins font globally -->
+    <style>
+        body, button, a, h2, ul, li {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Sidebar Toggle Button (Visible on Screens Smaller Than Medium) -->
+    <button id="sidebar-toggle" class="md:hidden fixed top-50 left-4 z-50 p-2 bg-gray-800 text-white rounded-md focus:outline-none">
+        <!-- Minimalistic Left Arrow Icon -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="ml-4 mt-4 rounded-2xl fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 md:relative md:translate-x-0 transition-transform duration-300 ease-in-out bg-gray-800 text-white w-64 md:w-1/4 lg:w-1/5 xl:w-1/6 px-4 py-6 box-border overflow-y-auto z-40">
+        <h2 class="text-2xl font-bold mb-6 md:block mt-6">Dashboard</h2>
+        <ul class="space-y-5 break-words">
+            @if (role == "admin")
+            {
+                <li><a href="@Url.Action("Index", "AdminDashboard/Dashboard")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Home</a></li>
+                <li><a href="@Url.Action("Index", "Books")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Books</a></li>
+                <li><a href="@Url.Action("Index", "book_reviews")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Reviews</a></li>
+                <li><a href="@Url.Action("Index", "Genres")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Genres</a></li>
+                <li><a href="@Url.Action("Index", "Authors")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Authors</a></li>
+                <li><a href="@Url.Action("Index", "Users")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Users</a></li>
+                <li><a href="@Url.Action("Index", "Borrowing_record")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Borrowing Record</a></li>
+                <li><a href="@Url.Action("Index", "publishers")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Publishers</a></li>
+                <li><a href="@Url.Action("Index", "user_contacts")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">User Contacts</a></li>
+                <li><a href="@Url.Action("Index", "login_history")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Login History</a></li>
+                <li><a href="@Url.Action("Index", "Roles")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Roles</a></li>
+                <li><a href="@Url.Action("Index", "Fines")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Fines</a></li>
+
+            }
+            else if (role == "member")
+            {
+                <li><a href="@Url.Action("Index", "UserDashboard/Dashboard")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Home</a></li>
+                <li><a href="@Url.Action("Index", "borrow")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Borrow Books</a></li>
+                <li><a href="@Url.Action("Index", "BookReviews/Index")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Reviews</a></li>
+                <li><a href="@Url.Action("Index", "borrow/BorrowedBooks")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Borrowed Books</a></li>
+                <li><a href="@Url.Action("Index", "CalFine")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Fines</a></li>
+                <li><a href="@Url.Action("Index", "UserProfile")" class="block py-2 px-2 rounded hover:bg-white hover:text-gray-800 truncate">Profile</a></li>
+            }
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleButton = document.getElementById('sidebar-toggle');
+
+            toggleButton.addEventListener('click', function () {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿@model Project.Models.user
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Global Font and Text Color -->
+    <style>
+        body, button, input, a, h2, p, label, div {
+            font-family: 'Poppins', sans-serif;
+            color: #e5e7eb; /* Tailwind's gray-200 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-800 to-gray-900 min-h-screen">
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <!-- Side Content: 30% on medium+ screens -->
+        <div class="hidden md:flex md:w-2/6 bg-gray-900 p-8 flex-col justify-center rounded-r-lg overflow-auto max-h-screen">
+            <div class="text-3xl md:text-4xl lg:text-5xl font-bold break-words tracking-wider leading-tight md:leading-snug mb-24">
+                USER REGISTRATION
+            </div>
+
+            <p class="text-base md:text-xl lg:text-xl leading-relaxed tracking-widest font-semibold">
+                Welcome to the revolution. Join us and simplify your library experience like never before.
+            </p>
+        </div>
+
+        <!-- Registration Form Container: 70% on medium+ screens -->
+        <div class="bg-gray-200 w-full md:w-4/6 flex items-center justify-center p-4 min-h-screen">
+            <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg flex flex-col items-center text-gray-800">
+                <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Register</h2>
+
+                @using (Html.BeginForm("Register", "Login", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="space-y-6 flex flex-col items-center w-full">
+                        <div class="flex flex-col w-full">
+                            @Html.LabelFor(m => m.user_name, "Username", new { @class = "block text-sm font-medium text-gray-800 mb-2" })
+                            @Html.TextBoxFor(m => m.user_name, new
+                            {
+                                @class = "p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800 w-full",
+                                placeholder = "Enter your name"
+                            })
+                            @Html.ValidationMessageFor(m => m.user_name, "", new { @class = "text-sm text-red-600 mt-1" })
+                        </div>
+
+                        <div class="flex flex-col w-full">
+                            @Html.LabelFor(m => m.email, "Email", new { @class = "block text-sm font-medium text-gray-800 mb-2" })
+                            @Html.TextBoxFor(m => m.email, new
+                            {
+                                @class = "p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800 w-full",
+                                placeholder = "Enter your email"
+                            })
+                            @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-sm text-red-600 mt-1" })
+                        </div>
+
+                        <div class="flex flex-col w-full">
+                            @Html.LabelFor(m => m.password, "Password", new { @class = "block text-sm font-medium text-gray-800 mb-2" })
+                            @Html.PasswordFor(m => m.password, new
+                            {
+                                @class = "p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800 w-full",
+                                placeholder = "Enter a password"
+                            })
+                            @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-sm text-red-600 mt-1" })
+                        </div>
+
+                        <div class="w-full">
+                            <input type="submit" value="Register"
+                                   class="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md transition duration-200" />
+                        </div>
+                    </div>
+                }
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="mt-4 text-center text-sm text-red-600 font-medium">
+                        @ViewBag.Error
+                    </div>
+                }
+
+                <div class="mt-6 text-center text-sm text-gray-800">
+                    <p class="text-gray-800">
+                        Already have an account?
+                        <a href="@Url.Action("Index", "Login")" class="text-gray-800 hover:underline font-bold">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

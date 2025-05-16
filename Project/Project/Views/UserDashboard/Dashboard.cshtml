@@ -1,0 +1,102 @@
+﻿@model Project.Models.user
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<!-- Tailwind + Poppins -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="w-full mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-4 py-8 rounded-xl shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-200 mb-4">Welcome, @Session["UserName"]</h2>
+    <p class="text-lg text-gray-200 mb-6">Here's an overview of your library activity.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Books Borrowed Card -->
+        <div class="bg-blue-500 text-white py-4 px-3 rounded-lg">
+            <div class="flex flex-col h-full gap-2">
+                <h3 class="text-lg font-bold mb-2">Books Borrowed</h3>
+                <p class="text-2xl font-bold">@ViewBag.MyBorrowedBooks</p>
+            </div>
+        </div>
+
+        <!-- Total Fines Card -->
+        <div class="bg-red-500 text-white p-4 rounded-lg">
+            <div class="flex flex-col h-full gap-2">
+                <h3 class="text-lg font-bold mb-2">Total Fines</h3>
+                <p class="text-2xl font-bold">@ViewBag.MyFines</p>
+            </div>
+        </div>
+
+        <!-- Borrowing History Card -->
+        <div class="bg-green-500 text-white py-4 px-2 rounded-lg">
+            <div class="flex flex-col h-full gap-2">
+                <h3 class="text-lg font-bold mb-2">Borrowing History</h3>
+                <p class="text-2xl font-bold">@ViewBag.MyHistory</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .text-gray-200 {
+        color: #e5e7eb;
+    }
+
+    .bg-gray-800 {
+        background-color: #1f2937;
+    }
+
+    .bg-gray-700 {
+        background-color: #374151;
+    }
+
+    .bg-blue-500 {
+        background-color: #3b82f6;
+    }
+
+    .bg-blue-600 {
+        background-color: #2563eb;
+    }
+
+    .bg-red-500 {
+        background-color: #ef4444;
+    }
+
+    .bg-purple-500 {
+        background-color: #8b5cf6;
+    }
+
+    .bg-green-500 {
+        background-color: #10b981;
+    }
+
+    .text-lg {
+        font-size: 1.125rem;
+    }
+
+    .font-bold {
+        font-weight: 700;
+    }
+
+    .p-4 {
+        padding: 1rem;
+    }
+
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+
+    .grid {
+        display: grid;
+    }
+
+    .gap-6 {
+        gap: 1.5rem;
+    }
+
+</style>

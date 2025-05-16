@@ -1,0 +1,138 @@
+﻿@model Project.Models.user
+@{
+    ViewBag.Title = "User Profile";
+}
+
+<!-- Tailwind + Poppins -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="max-w-5xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-4 py-8 rounded-xl shadow-lg">
+    <h2 class="text-3xl font-bold mb-10 text-center">User Profile</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="bg-green-600 text-green-200 px-4 py-3 mb-4 rounded">
+            @TempData["Success"]
+        </div>
+    }
+
+    @using (Html.BeginForm("Update", "UserProfile", FormMethod.Post))
+    {
+        <!-- User Profile Form (Grid Layout) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- User Name Field -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.user_name, "Username", new { @class = "text-lg font-medium" })
+                @Html.TextBoxFor(model => model.user_name, new { @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600 focus:text-gray-200" })
+                @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, "Email", new { @class = "text-lg font-medium" })
+                @Html.TextBoxFor(model => model.email, new { @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600 focus:text-gray-200" })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-red-500 text-sm mt-1" })
+            </div>
+
+            <!-- Display Contact -->
+            <div class="form-group">
+                @Html.Label("Contact Number", new { @class = "text-lg font-medium" })
+                @if (Model.user_contacts != null && Model.user_contacts.Any())
+                {
+                    @Html.TextBoxFor(m => m.user_contacts.FirstOrDefault().contact,
+                                     new { @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600 focus:text-gray-200" })
+                }
+                else
+                {
+                    <input type="text" name="user_contacts[0].contact" class="form-control mt-2 p-3 rounded-md bg-gray-700 text-gray-200 focus:ring-2 focus:ring-blue-500" placeholder="No contact available" />
+                }
+            </div>
+
+            <!-- Display Role Name -->
+            <div class="form-group">
+                @Html.Label("Role", "Role", new { @class = "text-lg font-medium" })
+                <input type="text" value="@Model.role.role_name" class="form-control mt-2 p-3 rounded-md border-none bg-gray-800 text-gray-200 focus:text-gray-200 focus:bg-gray-800" readonly />
+            </div>
+
+            <!-- Display Registration Timestamp -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.registration_timestamp, "Registration Timestamp", new { @class = "text-lg font-medium" })
+                <input type="text" value="@Model.registration_timestamp" class="form-control mt-2 p-3 rounded-md border-none bg-gray-800 text-gray-200 focus:text-gray-200 focus:bg-gray-800" readonly />
+            </div>
+
+            <!-- Display Last Login Timestamp -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.last_login_timestamp, "Last Login", new { @class = "text-lg font-medium" })
+                <input type="text" value="@Model.last_login_timestamp" class="form-control mt-2 p-3 rounded-md border-none bg-gray-800 text-gray-200 focus:text-gray-200 focus:bg-gray-800" readonly />
+            </div>
+
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-12">
+            <input type="submit" value="Update Profile" class="w-full py-3 text-lg font-semibold rounded bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 transition duration-200" />
+        </div>
+    }
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .text-gray-200 {
+        color: #e5e7eb;
+    }
+
+    .bg-gray-800 {
+        background-color: #1f2937;
+    }
+
+    .bg-gray-700 {
+        background-color: #374151;
+    }
+
+    .bg-blue-600 {
+        background-color: #3b82f6;
+    }
+
+    .bg-blue-700 {
+        background-color: #2563eb;
+    }
+
+    .bg-green-600 {
+        background-color: #16a34a;
+    }
+
+    .text-green-200 {
+        color: #bbf7d0;
+    }
+
+    .text-red-500 {
+        color: #f87171;
+    }
+
+    .text-lg {
+        font-size: 1.125rem;
+    }
+
+    .font-medium {
+        font-weight: 500;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+        .mt-2 {
+            margin-top: 4px; /* Adjust margin top on smaller screens */
+        }
+
+        .py-3 {
+            padding-top: 0.5rem; /* Adjust vertical padding */
+            padding-bottom: 0.5rem;
+        }
+    
+</style>

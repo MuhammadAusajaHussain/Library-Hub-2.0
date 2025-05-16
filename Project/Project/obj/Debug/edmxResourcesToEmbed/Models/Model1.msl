@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LMSModelStoreContainer" CdmEntityContainer="LMSEntities">
+    <EntitySetMapping Name="authors">
+      <EntityTypeMapping TypeName="LMSModel.author">
+        <MappingFragment StoreEntitySet="authors">
+          <ScalarProperty Name="author_id" ColumnName="author_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="biography" ColumnName="biography" />
+          <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="book_reviews">
+      <EntityTypeMapping TypeName="LMSModel.book_reviews">
+        <MappingFragment StoreEntitySet="book_reviews">
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="review_timestamp" ColumnName="review_timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="books">
+      <EntityTypeMapping TypeName="LMSModel.book">
+        <MappingFragment StoreEntitySet="books">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="author_id" ColumnName="author_id" />
+          <ScalarProperty Name="publisher_id" ColumnName="publisher_id" />
+          <ScalarProperty Name="genre_name" ColumnName="genre_name" />
+          <ScalarProperty Name="totalCopies" ColumnName="totalCopies" />
+          <ScalarProperty Name="borrowedCopies" ColumnName="borrowedCopies" />
+          <ScalarProperty Name="avlCopies" ColumnName="avlCopies" />
+          <ScalarProperty Name="publication_year" ColumnName="publication_year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="borrowing_record">
+      <EntityTypeMapping TypeName="LMSModel.borrowing_record">
+        <MappingFragment StoreEntitySet="borrowing_record">
+          <ScalarProperty Name="borrowing_id" ColumnName="borrowing_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="borrow_timestamp" ColumnName="borrow_timestamp" />
+          <ScalarProperty Name="due_timestamp" ColumnName="due_timestamp" />
+          <ScalarProperty Name="return_timestamp" ColumnName="return_timestamp" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fines">
+      <EntityTypeMapping TypeName="LMSModel.fine">
+        <MappingFragment StoreEntitySet="fine">
+          <ScalarProperty Name="fine_id" ColumnName="fine_id" />
+          <ScalarProperty Name="borrowing_id" ColumnName="borrowing_id" />
+          <ScalarProperty Name="fine_amount" ColumnName="fine_amount" />
+          <ScalarProperty Name="fine_due_timestamp" ColumnName="fine_due_timestamp" />
+          <ScalarProperty Name="fine_status" ColumnName="fine_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genres">
+      <EntityTypeMapping TypeName="LMSModel.genre">
+        <MappingFragment StoreEntitySet="genre">
+          <ScalarProperty Name="genre_name" ColumnName="genre_name" />
+          <ScalarProperty Name="genre_description" ColumnName="genre_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="login_history">
+      <EntityTypeMapping TypeName="LMSModel.login_history">
+        <MappingFragment StoreEntitySet="login_history">
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="login_time" ColumnName="login_time" />
+          <ScalarProperty Name="logout_time" ColumnName="logout_time" />
+          <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="publishers">
+      <EntityTypeMapping TypeName="LMSModel.publisher">
+        <MappingFragment StoreEntitySet="publishers">
+          <ScalarProperty Name="publisher_id" ColumnName="publisher_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contact_info" ColumnName="contact_info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservations">
+      <EntityTypeMapping TypeName="LMSModel.reservation">
+        <MappingFragment StoreEntitySet="reservation">
+          <ScalarProperty Name="reservation_id" ColumnName="reservation_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="reservation_timestamp" ColumnName="reservation_timestamp" />
+          <ScalarProperty Name="expiration_timestamp" ColumnName="expiration_timestamp" />
+          <ScalarProperty Name="reservation_status" ColumnName="reservation_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="LMSModel.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_contacts">
+      <EntityTypeMapping TypeName="LMSModel.user_contacts">
+        <MappingFragment StoreEntitySet="user_contacts">
+          <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="LMSModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="registration_timestamp" ColumnName="registration_timestamp" />
+          <ScalarProperty Name="last_login_timestamp" ColumnName="last_login_timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

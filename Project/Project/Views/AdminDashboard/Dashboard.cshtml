@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<!-- Tailwind + Poppins -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class="w-full mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-4 py-8 rounded-xl shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-200 mb-4">Admin Dashboard</h2>
+    <p class="text-lg text-gray-200 mb-6">Here's an overview of the system statistics.</p>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="bg-blue-500 text-white py-3 px-3 rounded-lg h-full">
+            <div class="flex flex-col justify-between h-full gap-2">
+                <h3 class="text-lg font-bold">Total Users</h3>
+                <p class="text-2xl font-bold">@ViewBag.TotalUsers</p>
+            </div>
+        </div>
+
+        <div class="bg-green-500 text-white py-3 px-3 rounded-lg h-full">
+            <div class="flex flex-col justify-between h-full gap-2">
+                <h3 class="text-lg font-bold">Total Books</h3>
+                <p class="text-2xl font-bold">@ViewBag.TotalBooks</p>
+            </div>
+        </div>
+
+        <div class="bg-yellow-500 text-white py-3 px-3 rounded-lg h-full">
+            <div class="flex flex-col justify-between h-full gap-2">
+                <h3 class="text-lg font-bold">Total Borrowed Books</h3>
+                <p class="text-2xl font-bold">@ViewBag.TotalBorrowedBooks</p>
+            </div>
+        </div>
+
+        <div class="bg-red-500 text-white py-3 px-3 rounded-lg h-full">
+            <div class="flex flex-col justify-between h-full gap-2">
+                <h3 class="text-lg font-bold">Total Fines</h3>
+                <p class="text-2xl font-bold">@ViewBag.TotalFines</p>
+            </div>
+        </div>
+
+        <div class="bg-indigo-500 text-white py-3 px-3 rounded-lg h-full">
+            <div class="flex flex-col justify-between h-full gap-2">
+                <h3 class="text-lg font-bold">Total Genres</h3>
+                <p class="text-2xl font-bold">@ViewBag.TotalGenres</p>
+            </div>
+        </div>
+        <div class="bg-indigo-500 text-white py-3 px-3 rounded-lg h-full">
+            <div class="flex flex-col justify-between h-full gap-2">
+                <h3 class="text-lg font-bold">Total Publishers</h3>
+                <p class="text-2xl font-bold">@ViewBag.TotalPublishers</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Matching Bar Chart -->
+    <div class="mt-12 bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 shadow-2xl mb-6">
+        <h3 class="text-2xl font-semibold mb-4 text-center text-gray-200">System Overview</h3>
+        <canvas id="overviewChart" class="w-full h-64"></canvas>
+    </div>
+</div>
+
+<!-- Chart.js + Script -->
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('overviewChart').getContext('2d');
+
+        const labels = ['Users', 'Books', 'Borrowed', 'Fines', 'Genres'];
+        const dataValues = [
+            @ViewBag.TotalUsers ?? 0,
+            @ViewBag.TotalBooks ?? 0,
+            @ViewBag.TotalBorrowedBooks ?? 0,
+            @ViewBag.TotalFines ?? 0,
+            @ViewBag.TotalGenres ?? 0
+        ];
+        const backgroundColors = [
+            '#3B82F6', // blue
+            '#10B981', // green
+            '#F59E0B', // yellow
+            '#EF4444', // red
+            '#6366F1'  // indigo
+        ];
+
+        // Conditionally add publishers if value is greater than 0
+        const totalPublishers = @ViewBag.TotalPublishers ?? 0;
+        if (totalPublishers > 0) {
+            labels.push('Publishers');
+            dataValues.push(totalPublishers);
+            backgroundColors.push('#8B5CF6'); // violet
+        }
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Count',
+                data: dataValues,
+                backgroundColor: backgroundColors,
+                borderRadius: 8,
+                barThickness: 40
+            }]
+        };
+
+        const options = {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#d1d5db' },
+                    grid: { color: '#1f2937' }
+                },
+                x: {
+                    ticks: { color: '#d1d5db' },
+                    grid: { color: '#1f2937' }
+                }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    </script>
+}
+
+
+<!-- Dark Theme Styling -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #111827;
+    }
+</style>

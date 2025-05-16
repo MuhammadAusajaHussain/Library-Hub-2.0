@@ -1,0 +1,70 @@
+﻿@model Project.Models.fine
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="max-w-5xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-6 py-8 rounded-xl shadow-lg">
+    <!-- Back to List Link -->
+    <div class="mb-6">
+        <a href="@Url.Action("Index")"
+           class="bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-2 px-4 rounded shadow transition duration-200">
+            ← Back to List
+        </a>
+    </div>
+
+    <h2 class="text-3xl font-bold mb-6 text-center">Create New Fine</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-red-500 mb-4" })
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Fine ID -->
+    <!-- Borrowing ID -->
+    <div>
+        @Html.LabelFor(model => model.borrowing_id, "Borrowing Record", htmlAttributes: new { @class = "text-lg font-medium" })
+        @Html.DropDownList("borrowing_id", null, htmlAttributes: new { @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600" })
+        @Html.ValidationMessageFor(model => model.borrowing_id, "", new { @class = "text-red-500 text-sm mt-1" })
+    </div>
+
+    <!-- Fine Amount -->
+    <div>
+        @Html.LabelFor(model => model.fine_amount, "Fine Amount", htmlAttributes: new { @class = "text-lg font-medium" })
+        @Html.EditorFor(model => model.fine_amount, new { htmlAttributes = new { @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600" } })
+        @Html.ValidationMessageFor(model => model.fine_amount, "", new { @class = "text-red-500 text-sm mt-1" })
+    </div>
+
+    <!-- Fine Due Timestamp -->
+    <div>
+        @Html.LabelFor(model => model.fine_due_timestamp, "Due Timestamp", htmlAttributes: new { @class = "text-lg font-medium" })
+        @Html.EditorFor(model => model.fine_due_timestamp, new { htmlAttributes = new { @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600" } })
+        @Html.ValidationMessageFor(model => model.fine_due_timestamp, "", new { @class = "text-red-500 text-sm mt-1" })
+    </div>
+
+    <!-- Fine Status -->
+    <div>
+        @Html.LabelFor(model => model.fine_status, "Status", htmlAttributes: new { @class = "text-lg font-medium" })
+
+        @Html.DropDownListFor(model => model.fine_status,
+            new SelectList(new[] {
+                new { Value = "paid", Text = "Paid" },
+                new { Value = "unpaid", Text = "Unpaid" }
+            }, "Value", "Text"),
+            "Select Status",
+            new
+                {
+                @class = "form-control mt-2 p-3 rounded-md border-none bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-gray-600"
+            })
+
+        @Html.ValidationMessageFor(model => model.fine_status, "", new { @class = "text-red-500 text-sm mt-1" })
+    </div>
+
+</div>
+
+        <div class="text-center mt-8">
+            <input type="submit" value="Create" class="w-full py-3 text-lg font-semibold rounded bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 transition duration-200" />
+        </div>
+    }
+</div>

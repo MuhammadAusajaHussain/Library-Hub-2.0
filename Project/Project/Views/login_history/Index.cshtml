@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Project.Models.login_history>
+
+@{
+    ViewBag.Title = "Login History";
+}
+
+<!-- Tailwind & Poppins -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class=" px-4 py-10 text-white rounded-xl bg-gradient-to-br from-gray-800 to-gray-900" style="font-family: 'Poppins', sans-serif;">
+    <h2 class="text-3xl font-bold mb-6 text-center text-gray-200">Login History</h2>
+
+    <div class="mb-6 text-left">
+        @Html.ActionLink("Create New", "Create", null, new
+        {
+            @class = "bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-3 px-4 rounded shadow transition duration-200"
+        })
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full rounded-xl shadow-md overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200">
+            <thead class="bg-gray-700">
+                <tr>
+                    <th class="py-3 px-4 text-left">Login Time</th>
+                    <th class="py-3 px-4 text-left">Logout Time</th>
+                    <th class="py-3 px-4 text-left">IP Address</th>
+                    <th class="py-3 px-4 text-left">User</th>
+                    <th class="py-3 px-4 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-600" id="login-history-table-body">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-700 transition duration-150">
+                        <td class="py-3 px-4">@item.login_time</td>
+                        <td class="py-3 px-4">@item.logout_time</td>
+                        <td class="py-3 px-4">@item.ip_address</td>
+                        <td class="py-3 px-4">@item.user.user_name</td>
+                        <td class="py-3 px-4">
+                            <div class="flex flex-col space-y-2">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.login_id }, new
+                                {
+                                    @class = "w-24 text-center bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded-lg text-sm transition duration-200"
+                                })
+                                @Html.ActionLink("Details", "Details", new { id = item.login_id }, new
+                                {
+                                    @class = "w-24 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg text-sm transition duration-200"
+                                })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.login_id }, new
+                                {
+                                    @class = "w-24 text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition duration-200"
+                                })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Function to format the date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const date = new Date(dateString);
+            return date.toLocaleString('en-US', options);
+        }
+
+        // Get all login and logout date cells and format the dates
+        const dateCells = document.querySelectorAll('td');
+        dateCells.forEach(cell => {
+            const rawDate = cell.textContent;
+            if (rawDate.includes(":")) { // Check if it looks like a timestamp
+                const formattedDate = formatDate(rawDate);
+                cell.textContent = formattedDate;
+            }
+        });
+    });
+</script>

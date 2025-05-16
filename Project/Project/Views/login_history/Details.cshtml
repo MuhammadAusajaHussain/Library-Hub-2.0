@@ -1,0 +1,47 @@
+﻿@model Project.Models.login_history
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="max-w-4xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-6 py-8 rounded-xl shadow-lg">
+    <!-- Back to List Link -->
+    <div class="mb-6">
+        <a href="@Url.Action("Index")"
+           class="bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-2 px-4 rounded shadow transition duration-200">
+            ← Back to List
+        </a>
+    </div>
+
+    <h2 class="text-3xl font-bold mb-6 text-center">Login History Details</h2>
+
+    <div class="space-y-4">
+        <!-- Login Time -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Login Time:</span>
+            <span>@Html.DisplayFor(model => model.login_time)</span>
+        </div>
+
+        <!-- Logout Time -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Logout Time:</span>
+            <span>@Html.DisplayFor(model => model.logout_time)</span>
+        </div>
+
+        <!-- IP Address -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">IP Address:</span>
+            <span>@Html.DisplayFor(model => model.ip_address)</span>
+        </div>
+
+        <!-- Username -->
+        <div class="flex justify-between border-b border-gray-700 py-2">
+            <span class="font-semibold">Username:</span>
+            <span>@Html.DisplayFor(model => model.user.user_name)</span>
+        </div>
+    </div>
+
+    <div class="mt-6 flex justify-center gap-6">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.login_id }, new { @class = "bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-3 px-4 rounded shadow transition duration-200" })
+    </div>
+</div>

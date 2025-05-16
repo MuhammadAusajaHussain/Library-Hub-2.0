@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Project.Models.genre>
+
+@{
+    ViewBag.Title = "Genres";
+}
+
+<!-- Tailwind & Poppins -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<div class=" px-4 py-10 text-white rounded-xl bg-gradient-to-br from-gray-800 to-gray-900" style="font-family: 'Poppins', sans-serif;">
+    <h2 class="text-3xl font-bold mb-6 text-center text-gray-200">Genres</h2>
+
+    <div class="mb-6 text-left">
+        @Html.ActionLink("Create New", "Create", null, new
+        {
+            @class = "bg-blue-600 hover:bg-gray-200 hover:text-blue-600 text-gray-200 font-bold py-3 px-4 rounded shadow transition duration-200"
+        })
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full rounded-xl shadow-md overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200">
+            <thead class="bg-gray-700">
+                <tr>
+                    <th class="py-3 px-4 text-center">Genre Description</th>
+                    <th class="py-3 px-4 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-600">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-700 transition duration-150">
+                        <td class="py-3 px-4">@item.genre_description</td>
+                        <td class="py-3 px-4">
+                            <div class="flex flex-wrap gap-2 justify-center">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.genre_name }, new
+                                {
+                                    @class = "w-24 text-center bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded-lg text-sm transition duration-200"
+                                })
+                                @Html.ActionLink("Details", "Details", new { id = item.genre_name }, new
+                                {
+                                    @class = "w-24 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg text-sm transition duration-200"
+                                })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.genre_name }, new
+                                {
+                                    @class = "w-24 text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg text-sm transition duration-200"
+                                })
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

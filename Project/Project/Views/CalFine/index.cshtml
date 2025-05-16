@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Project.Controllers.CalFineViewModel>
+
+@{
+    ViewBag.Title = "Current Borrowed Books & Fines";
+}
+
+<!-- Tailwind + Poppins -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="w-full mx-auto bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200 px-3 py-8 rounded-xl shadow-lg">
+    <h2 class="text-3xl font-bold mb-6 text-center">Borrowed Books And Fines</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="bg-green-600 text-green-200 px-4 py-3 mb-4 rounded">
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="bg-yellow-600 text-yellow-100 px-4 py-3 rounded">
+            You have no fines.
+        </div>
+    }
+    else
+    {
+        <div class="overflow-x-auto">
+            <table class="min-w-full rounded-xl shadow-md overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 text-gray-200">
+                <thead class="bg-gray-700">
+                    <tr class="text-sm md:text-base lg:text-lg">
+                        <th class="px-4 py-3 text-left whitespace-nowrap">Book Title</th>
+                        <th class="px-4 py-3 text-left whitespace-nowrap">Due Date</th>
+                        <th class="px-4 py-3 text-center whitespace-nowrap">Days Overdue</th>
+                        <th class="px-4 py-3 text-center whitespace-nowrap">Fine</th>
+                        <th class="px-4 py-3 text-center whitespace-nowrap">Status</th>
+                        <th class="px-4 py-3 text-center whitespace-nowrap">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="border-t border-gray-600 text-sm md:text-base lg:text-lg">
+                            <td class="px-2 py-3 whitespace-nowrap">@item.BookTitle</td>
+                            <td class="px-2 py-3 whitespace-nowrap">@item.DueDate</td>
+                            <td class="px-2 py-3 text-center whitespace-nowrap">@item.DaysOverdue</td>
+                            <td class="px-2 py-3 text-center whitespace-nowrap">@item.FineAmount</td>
+                            <td class="px-2 py-3 text-center whitespace-nowrap">@item.FineStatus</td>
+                            <td class="px-2 py-3 text-center">
+                                <div class="flex flex-wrap justify-center gap-3">
+                                    @if (item.FineStatus == "unpaid")
+                                    {
+                                        using (Html.BeginForm("PayFine", "CalFine", FormMethod.Post, new { @class = "inline-block" }))
+                                        {
+                                            @Html.Hidden("fineId", item.FineId)
+                                            <button class="w-32 px-4 py-2 text-sm font-semibold rounded bg-blue-600 hover:bg-blue-700 text-gray-200 transition duration-200">
+                                                Pay Fine
+                                            </button>
+                                        }
+                                    }
+                                    <button class="w-32 px-4 py-2 text-sm font-semibold rounded bg-yellow-500 hover:bg-yellow-600 text-gray-900 transition duration-200 remove-btn"
+                                            @(item.FineStatus != "paid" ? "disabled" : "")>
+                                        Remove
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .text-gray-200 {
+        color: #e5e7eb;
+    }
+
+    .bg-gray-800 {
+        background-color: #1f2937;
+    }
+
+    .bg-gray-700 {
+        background-color: #374151;
+    }
+
+    .bg-blue-600 {
+        background-color: #3b82f6;
+    }
+
+    .bg-blue-700 {
+        background-color: #2563eb;
+    }
+
+    .bg-yellow-500 {
+        background-color: #eab308;
+    }
+
+    .bg-yellow-600 {
+        background-color: #ca8a04;
+    }
+
+    .bg-green-600 {
+        background-color: #16a34a;
+    }
+
+    .text-green-200 {
+        color: #bbf7d0;
+    }
+
+    .text-yellow-100 {
+        color: #fef9c3;
+    }
+</style>
+
+@section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.remove-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    if (btn.disabled) return;
+                    var row = btn.closest('tr');
+                    row.remove();
+                });
+            });
+        });
+    </script>
+}
