@@ -50,6 +50,7 @@ git clone https://github.com/AbdMuh/Library-Hub-2.0
 3. Update the connection string in web.config file to match your local SQL Server instance.
 
 To provide a comprehensive understanding of the project's architecture and implementation, the Project Report has been attached for reference.
+
 ---
 
 ## Gallery
