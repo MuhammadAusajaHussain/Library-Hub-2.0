@@ -53,13 +53,11 @@ git clone https://github.com/AbdMuh/Library-Hub-2.0
 
 ## Gallery
 
-![image](https://github.com/user-attachments/assets/e5ae5904-950f-4a9b-9815-c6501068b125)
+![image](https://github.com/user-attachments/assets/8ceb43b7-a0af-4cf3-9815-9419696d5e08)
+![image](https://github.com/user-attachments/assets/8b9ab52a-b1b5-4bf3-a720-e98dd52b3aa6)
+![image](https://github.com/user-attachments/assets/3c675e08-a9a6-4e09-ac3c-a4bb1d68d12a)
+![image](https://github.com/user-attachments/assets/a8f2c672-b21b-4ad8-9487-ecdfbd4edd1d)
 
-![image](https://github.com/user-attachments/assets/18801489-625d-4e7d-8c95-de27dc07090c)
-
-![image](https://github.com/user-attachments/assets/1195418c-5ef2-40ef-86a7-360929261b0e)
-
-![image](https://github.com/user-attachments/assets/aee270ef-844a-42f9-be1c-668d00412b37)
 
 ---
 
