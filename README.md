@@ -49,6 +49,7 @@ git clone https://github.com/AbdMuh/Library-Hub-2.0
 2. Run the LMS.sql on SQL Server Management Studio (SSMS) to create required database and tables
 3. Update the connection string in web.config file to match your local SQL Server instance.
 
+To provide a comprehensive understanding of the project's architecture and implementation, the Project Report has been attached for reference.
 ---
 
 ## Gallery
